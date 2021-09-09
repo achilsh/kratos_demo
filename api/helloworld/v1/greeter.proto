@@ -16,7 +16,7 @@ service Greeter {
         option (google.api.http) = {
           // 定义一个 GET 接口，并且把 name 映射到 HelloRequest
             get: "/helloworld/{name}"
-          
+
           additional_bindings {
             // 定义一个 POST 接口，并且把 body 映射到 HelloRequest
             post: "/v1/greeter/say_hello",
@@ -29,6 +29,7 @@ service Greeter {
 // The request message containing the user's name.
 message HelloRequest {
   string name = 1;
+  string data = 2;
 }
 
 // The response message containing the greetings
