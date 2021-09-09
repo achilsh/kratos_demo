@@ -15,7 +15,10 @@ func NewHelloworldService() *HelloworldService {
 }
 
 func (s *HelloworldService) CreateHelloworld(ctx context.Context, req *pb.CreateHelloworldRequest) (*pb.CreateHelloworldReply, error) {
-	return &pb.CreateHelloworldReply{}, nil
+	return &pb.CreateHelloworldReply{
+		Code : req.ReqNo,
+		ErrMsg: req.Msg + ", succ",
+	}, nil
 }
 func (s *HelloworldService) UpdateHelloworld(ctx context.Context, req *pb.UpdateHelloworldRequest) (*pb.UpdateHelloworldReply, error) {
 	return &pb.UpdateHelloworldReply{}, nil

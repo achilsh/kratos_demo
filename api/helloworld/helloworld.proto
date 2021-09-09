@@ -14,8 +14,14 @@ service Helloworld {
 	rpc ListHelloworld (ListHelloworldRequest) returns (ListHelloworldReply);
 }
 
-message CreateHelloworldRequest {}
-message CreateHelloworldReply {}
+message CreateHelloworldRequest {
+	string msg = 1;
+	int32  req_no =2;
+}
+message CreateHelloworldReply {
+	int32 code = 1;
+	string err_msg = 2;
+}
 
 message UpdateHelloworldRequest {}
 message UpdateHelloworldReply {}
