@@ -1,0 +1,51 @@
+syntax = "proto3";
+
+package api.helloworld.v1;
+
+import "google/api/annotations.proto";
+
+option go_package = "helloworld/api/helloworld/v1;v1";
+option java_multiple_files = true;
+option java_package = "api.helloworld.v1";
+
+service Demo {
+	rpc CreateDemo (CreateDemoRequest) returns (CreateDemoReply);
+	rpc UpdateDemo (UpdateDemoRequest) returns (UpdateDemoReply);
+	rpc DeleteDemo (DeleteDemoRequest) returns (DeleteDemoReply);
+	rpc GetDemo (GetDemoRequest) returns (GetDemoReply);
+	rpc ListDemo (ListDemoRequest) returns (ListDemoReply);
+
+	// Sends a greeting
+	rpc DemoReq (CreateDemoRequest) returns (CreateDemoReply)  {
+		option (google.api.http) = {
+			// 定义一个 GET 接口，并且把 name 映射到 HelloRequest
+			get: "/helloworld/{name}"
+
+			additional_bindings {
+				// 定义一个 POST 接口，并且把 body 映射到 HelloRequest
+				post: "/v1/demo/say_hello",
+				body: "*",
+			}
+		};
+	}
+}
+
+message CreateDemoRequest {
+	string name = 1;
+	string data = 2;
+}
+message CreateDemoReply {
+	string data = 1;
+}
+
+message UpdateDemoRequest {}
+message UpdateDemoReply {}
+
+message DeleteDemoRequest {}
+message DeleteDemoReply {}
+
+message GetDemoRequest {}
+message GetDemoReply {}
+
+message ListDemoRequest {}
+message ListDemoReply {}
